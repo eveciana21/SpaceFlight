@@ -13,7 +13,6 @@ public class ChangeCamera : MonoBehaviour
 
     [SerializeField] private bool _isCockpitCam;
 
-    private float _timeLapsed;
     void Start()
     {
         _cockpitCam.SetActive(false);
@@ -22,11 +21,8 @@ public class ChangeCamera : MonoBehaviour
 
     void Update()
     {
-       // _timeLapsed = Time.time + 5;
-
         if (Input.GetKeyDown(KeyCode.R))
         {
-
             if (_isCockpitCam == false)
             {
                 _cockpitCam.SetActive(true);
@@ -42,10 +38,32 @@ public class ChangeCamera : MonoBehaviour
                 _isCockpitCam = false;
             }
         }
-        else if (!Input.anyKey && _timeLapsed > 5)
+
+        if (Input.anyKeyDown || Input.anyKey)
         {
-            Debug.Log("Its been 5 seconds");
-            _director.Play();
+            if (_isCockpitCam == false)
+            {
+                _director.Stop();
+                StopCoroutine("PlayCutScene");
+                StartCoroutine("PlayCutScene");
+            }
+            else
+            {
+                StopCoroutine("PlayCutScene");
+            }
+        }
+    }
+
+    IEnumerator PlayCutScene()
+    {
+        yield return new WaitForSeconds(2);
+        _cockpit.SetActive(false);
+        _director.Play();
+
+        if (_isCockpitCam == false)
+        {
+            _isCockpitCam = true;
         }
     }
 }
+
