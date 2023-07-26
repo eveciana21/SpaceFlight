@@ -6,17 +6,36 @@ using Cinemachine;
 
 public class ChangeCamera : MonoBehaviour
 {
+    [SerializeField] private GameObject _spaceShip;
     [SerializeField] private GameObject _cockpit;
     [SerializeField] private PlayableDirector _director;
+    [SerializeField] private GameObject _mainCam;
 
     [SerializeField] private GameObject _cockpitCam, _spaceShipCam;
 
     [SerializeField] private bool _isCockpitCam;
+    [SerializeField] private GameObject _trailParticles;
+    [SerializeField] private bool _isPlayingCutScene;
+
+    [SerializeField] private GameObject _pressRText;
 
     void Start()
     {
-        _cockpitCam.SetActive(false);
-        _cockpit.SetActive(false);
+        //_mainCam.SetActive(false);
+
+        if (_pressRText != null)
+        {
+            _pressRText.SetActive(false);
+        }
+        if (_cockpit != null)
+        {
+            _cockpit.SetActive(false);
+        }
+        if (_cockpitCam != null)
+        {
+            _cockpitCam.SetActive(false);
+        }
+        StartCoroutine(PressR());
     }
 
     void Update()
@@ -25,6 +44,7 @@ public class ChangeCamera : MonoBehaviour
         {
             if (_isCockpitCam == false)
             {
+                _pressRText.SetActive(true);
                 _cockpitCam.SetActive(true);
                 _cockpit.SetActive(true);
                 _spaceShipCam.SetActive(false);
@@ -32,6 +52,7 @@ public class ChangeCamera : MonoBehaviour
             }
             else
             {
+                _pressRText.SetActive(false);
                 _cockpitCam.SetActive(false);
                 _cockpit.SetActive(false);
                 _spaceShipCam.SetActive(true);
@@ -43,12 +64,20 @@ public class ChangeCamera : MonoBehaviour
         {
             if (_isCockpitCam == false)
             {
+                _spaceShipCam.SetActive(true);
+                _cockpitCam.SetActive(false);
+                _cockpit.SetActive(false);
+
                 _director.Stop();
+                _trailParticles.SetActive(false);
                 StopCoroutine("PlayCutScene");
                 StartCoroutine("PlayCutScene");
+
             }
             else
             {
+                _pressRText.SetActive(false);
+                _director.Stop();
                 StopCoroutine("PlayCutScene");
             }
         }
@@ -56,14 +85,26 @@ public class ChangeCamera : MonoBehaviour
 
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
+        _pressRText.SetActive(false);
         _cockpit.SetActive(false);
         _director.Play();
 
-        if (_isCockpitCam == false)
+        /*if (_isCockpitCam == false)
         {
             _isCockpitCam = true;
-        }
+        }*/
+    }
+
+    IEnumerator PressR()
+    {
+        yield return new WaitForSeconds(10);
+        _pressRText.SetActive(true);
+    }
+
+    public void MainCam()
+    {
+        _mainCam.SetActive(true);
     }
 }
 
