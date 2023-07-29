@@ -7,13 +7,12 @@ public class GameManager : MonoBehaviour
 
     private bool _canQuit;
     [SerializeField] private GameObject _canQuitUI;
-    // Start is called before the first frame update
+
     void Start()
     {
         _canQuitUI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Quit();

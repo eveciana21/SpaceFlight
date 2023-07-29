@@ -13,9 +13,19 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    public void PressPlay()
+    public void PressQuit()
     {
         _director.Play();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PressPlay()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void PlayGame()

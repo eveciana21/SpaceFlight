@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using Cinemachine;
 
+
 public class ChangeCamera : MonoBehaviour
 {
     [SerializeField] private GameObject _spaceShip;
@@ -19,8 +20,14 @@ public class ChangeCamera : MonoBehaviour
 
     [SerializeField] private GameObject _pressRText;
 
+    [SerializeField] private CinemachineExtension _zoomCam;
+
+    [SerializeField] private ShipControls _shipControls;
+
+
     void Start()
     {
+        _shipControls = _shipControls.GetComponent<ShipControls>();
         //_mainCam.SetActive(false);
 
         if (_pressRText != null)
@@ -36,14 +43,30 @@ public class ChangeCamera : MonoBehaviour
             _cockpitCam.SetActive(false);
         }
         StartCoroutine(PressR());
+
+        _zoomCam.enabled = false;
     }
 
     void Update()
     {
+        if (_isCockpitCam == false)
+        {
+            if (Input.GetKey(KeyCode.T))
+            {
+                _zoomCam.enabled = true;
+            }
+            if (Input.GetKeyUp(KeyCode.T))
+            {
+                _zoomCam.enabled = false;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (_isCockpitCam == false)
             {
+
+                _spaceShip.SetActive(false);
                 _pressRText.SetActive(true);
                 _cockpitCam.SetActive(true);
                 _cockpit.SetActive(true);
@@ -52,6 +75,8 @@ public class ChangeCamera : MonoBehaviour
             }
             else
             {
+
+                _spaceShip.SetActive(true);
                 _pressRText.SetActive(false);
                 _cockpitCam.SetActive(false);
                 _cockpit.SetActive(false);
@@ -64,47 +89,55 @@ public class ChangeCamera : MonoBehaviour
         {
             if (_isCockpitCam == false)
             {
-                _spaceShipCam.SetActive(true);
-                _cockpitCam.SetActive(false);
-                _cockpit.SetActive(false);
-
-                _director.Stop();
-                _trailParticles.SetActive(false);
-                StopCoroutine("PlayCutScene");
-                StartCoroutine("PlayCutScene");
-
+                _shipControls.CockpitCamNotActive();
+                SpaceShipCam();
             }
             else
             {
-                _pressRText.SetActive(false);
-                _director.Stop();
-                StopCoroutine("PlayCutScene");
+                _shipControls.CockpitCamActive();
+                CockPitCam();
             }
         }
     }
 
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         _pressRText.SetActive(false);
         _cockpit.SetActive(false);
+        _spaceShip.SetActive(true);
         _director.Play();
-
-        /*if (_isCockpitCam == false)
-        {
-            _isCockpitCam = true;
-        }*/
     }
 
     IEnumerator PressR()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(3);
         _pressRText.SetActive(true);
     }
 
     public void MainCam()
     {
         _mainCam.SetActive(true);
+    }
+
+    private void SpaceShipCam()
+    {
+        _spaceShipCam.SetActive(true);
+        _cockpitCam.SetActive(false);
+        _cockpit.SetActive(false);
+        _pressRText.SetActive(true);
+        _director.Stop();
+        _trailParticles.SetActive(false);
+        StopCoroutine("PlayCutScene");
+        StartCoroutine("PlayCutScene");
+    }
+
+    private void CockPitCam()
+    {
+        _pressRText.SetActive(false);
+        _director.Stop();
+        StopCoroutine("PlayCutScene");
+        StartCoroutine("PlayCutScene");
     }
 }
 
