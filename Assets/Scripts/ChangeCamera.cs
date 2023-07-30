@@ -28,7 +28,7 @@ public class ChangeCamera : MonoBehaviour
     void Start()
     {
         _shipControls = _shipControls.GetComponent<ShipControls>();
-        //_mainCam.SetActive(false);
+        _spaceShip.SetActive(true);
 
         if (_pressRText != null)
         {
@@ -75,7 +75,6 @@ public class ChangeCamera : MonoBehaviour
             }
             else
             {
-
                 _spaceShip.SetActive(true);
                 _pressRText.SetActive(false);
                 _cockpitCam.SetActive(false);
@@ -102,7 +101,8 @@ public class ChangeCamera : MonoBehaviour
 
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(50);
+        _isCockpitCam = false;
         _pressRText.SetActive(false);
         _cockpit.SetActive(false);
         _spaceShip.SetActive(true);
@@ -111,14 +111,14 @@ public class ChangeCamera : MonoBehaviour
 
     IEnumerator PressR()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         _pressRText.SetActive(true);
     }
 
-    public void MainCam()
+   /*public void MainCam()
     {
         _mainCam.SetActive(true);
-    }
+    }*/
 
     private void SpaceShipCam()
     {

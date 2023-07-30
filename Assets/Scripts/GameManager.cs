@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int _satellitesRemaining = 5;
+    [SerializeField] private GameObject _lastSatellite;
+
 
     private bool _canQuit;
     [SerializeField] private GameObject _canQuitUI;
@@ -11,11 +14,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _canQuitUI.SetActive(false);
+        _lastSatellite.SetActive(false);
     }
 
     void Update()
     {
         Quit();
+
+        if (_satellitesRemaining == 1)
+        {
+            _lastSatellite.SetActive(true);
+        }
+
+        if (_satellitesRemaining < 1)
+        {
+            Debug.Log("Play End Cutscene");
+        }
     }
 
     private void Quit()
@@ -42,5 +56,10 @@ public class GameManager : MonoBehaviour
             _canQuitUI.SetActive(false);
             SceneManager.LoadScene(0);
         }
+    }
+
+    public void SatellitesRemaining()
+    {
+        _satellitesRemaining--;
     }
 }

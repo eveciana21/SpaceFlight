@@ -15,10 +15,20 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private bool _cockpitCam;
     [SerializeField] private GameObject _laserPrefab;
 
+    [SerializeField] private AudioClip _laserAudio;
+    private AudioSource _audioSource;
+
 
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
+        if (_audioSource != null)
+        {
+            _audioSource.clip = _laserAudio;
+        }
+
         _currentSpeed = 1;
         _particle.SetActive(false);
     }
@@ -30,6 +40,8 @@ public class ShipControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(_laserPrefab, transform.position, transform.rotation);
+            _audioSource.Play();
+
         }
     }
 
@@ -76,6 +88,8 @@ public class ShipControls : MonoBehaviour
 
         transform.position += transform.forward * _currentSpeed * Time.deltaTime;
     }
+
+    
 
     public void CockpitCamActive()
     {
