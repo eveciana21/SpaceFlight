@@ -101,7 +101,7 @@ public class ChangeCamera : MonoBehaviour
 
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(50);
+        yield return new WaitForSeconds(5);
         _isCockpitCam = false;
         _pressRText.SetActive(false);
         _cockpit.SetActive(false);

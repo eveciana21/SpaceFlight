@@ -41,7 +41,6 @@ public class ShipControls : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position, transform.rotation);
             _audioSource.Play();
-
         }
     }
 
@@ -55,9 +54,9 @@ public class ShipControls : MonoBehaviour
             if (Input.GetKey(KeyCode.T))
             {
                 _currentSpeed++;
-                if (_currentSpeed > 12)
+                if (_currentSpeed > 40)
                 {
-                    _currentSpeed = 12;
+                    _currentSpeed = 40;
                     _particle.SetActive(true);
                 }
             }//increase speed
@@ -69,7 +68,7 @@ public class ShipControls : MonoBehaviour
             _particle.SetActive(false);
         }
 
-        if (Input.GetKey(KeyCode.G))
+        /*if (Input.GetKey(KeyCode.G))
         {
             _currentSpeed--;
             if (_currentSpeed < 1)
@@ -77,7 +76,7 @@ public class ShipControls : MonoBehaviour
                 _currentSpeed = 1;
             }
         }//decrease speed
-
+        */
         Vector3 rotateH = new Vector3(0, _horizontal, 0);
         transform.Rotate(rotateH * _rotSpeed * Time.deltaTime);
 
@@ -89,7 +88,7 @@ public class ShipControls : MonoBehaviour
         transform.position += transform.forward * _currentSpeed * Time.deltaTime;
     }
 
-    
+
 
     public void CockpitCamActive()
     {
