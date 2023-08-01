@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Satellite : MonoBehaviour
 {
-
     [SerializeField] private int _health = 16;
     [SerializeField] private GameObject _explosion;
     [SerializeField] private MeshRenderer _renderer;

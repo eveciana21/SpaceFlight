@@ -101,7 +101,7 @@ public class ChangeCamera : MonoBehaviour
 
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(20);
         _isCockpitCam = false;
         _pressRText.SetActive(false);
         _cockpit.SetActive(false);
@@ -114,11 +114,6 @@ public class ChangeCamera : MonoBehaviour
         yield return new WaitForSeconds(5);
         _pressRText.SetActive(true);
     }
-
-   /*public void MainCam()
-    {
-        _mainCam.SetActive(true);
-    }*/
 
     private void SpaceShipCam()
     {

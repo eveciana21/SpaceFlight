@@ -68,15 +68,6 @@ public class ShipControls : MonoBehaviour
             _particle.SetActive(false);
         }
 
-        /*if (Input.GetKey(KeyCode.G))
-        {
-            _currentSpeed--;
-            if (_currentSpeed < 1)
-            {
-                _currentSpeed = 1;
-            }
-        }//decrease speed
-        */
         Vector3 rotateH = new Vector3(0, _horizontal, 0);
         transform.Rotate(rotateH * _rotSpeed * Time.deltaTime);
 
@@ -87,8 +78,6 @@ public class ShipControls : MonoBehaviour
 
         transform.position += transform.forward * _currentSpeed * Time.deltaTime;
     }
-
-
 
     public void CockpitCamActive()
     {

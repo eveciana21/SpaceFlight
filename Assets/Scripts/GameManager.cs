@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
             _lastSatellite.SetActive(true);
         }
 
-        if (_satellitesRemaining < 1)
+        /*if (_satellitesRemaining < 1)
         {
             Debug.Log("Play End Cutscene");
-        }
+        }*/
     }
 
     private void Quit()

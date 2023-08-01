@@ -7,6 +7,8 @@ TagManager:
   - Laser
   - Satellite
   - Last Satellite
+  - Space Ship
+  - SpaceShip
   layers:
   - Default
   - TransparentFX
