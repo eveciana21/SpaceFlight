@@ -9957,8 +9957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b463af3b5d73d99479d70e3ac4347993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 200
-  _laserAudio: {fileID: 8300000, guid: 0989f819bd4a7df4f906ea30f08f67d4, type: 3}
+  _speed: 300
 --- !u!82 &5410259087256710460
 AudioSource:
   m_ObjectHideFlags: 0

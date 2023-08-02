@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 726731b4e728451409f8cdc69348293f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98bda812131937b4083d8e6f8a08f878, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -448,7 +448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &292837324
 Transform:
   m_ObjectHideFlags: 0
@@ -2282,13 +2282,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig_Head'\n\tTransform 'mixamorig_RightHandIndex2'\n\tTransform
-    'mixamorig_LeftHand'\n\tTransform 'mixamorig_LeftLeg'\n\tTransform 'mixamorig_RightHand'\n\tTransform
-    'mixamorig_LeftUpLeg'\n\tTransform 'mixamorig_LeftShoulder'\n\tTransform 'mixamorig_RightArm'\n\tTransform
-    'mixamorig_RightToeBase'\n\tTransform 'mixamorig_RightHandIndex3'\n\tand more
-    ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -2727,8 +2721,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.7924528, g: 0.40669274, b: 0.40669274, a: 1}
+    m_PressedColor: {r: 0.5377358, g: 0.26075113, b: 0.26075113, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -3093,8 +3087,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
-    m_PressedColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+    m_HighlightedColor: {r: 0.7921569, g: 0.40784314, b: 0.40784314, a: 1}
+    m_PressedColor: {r: 0.5372549, g: 0.25882354, b: 0.25882354, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -4962,7 +4956,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 7e5af065ea2b9cd489d72b7391f1fb72, type: 2}
+  sharedProfile: {fileID: 11400000, guid: e46f06259c890134fac0903ee39d3c5c, type: 2}
 --- !u!4 &1601952747
 Transform:
   m_ObjectHideFlags: 0

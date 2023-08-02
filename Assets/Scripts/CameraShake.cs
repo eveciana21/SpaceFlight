@@ -7,11 +7,6 @@ public class CameraShake : MonoBehaviour
     private float _shakeDuration;
     private float _xShake, _yShake, _zShake;
 
-    void Start()
-    {
-
-    }
-
     IEnumerator ShakeDuration()
     {
         Vector3 _originalPos = transform.position;

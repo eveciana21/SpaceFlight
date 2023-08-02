@@ -24,11 +24,14 @@ public class ChangeCamera : MonoBehaviour
 
     [SerializeField] private ShipControls _shipControls;
 
+    [SerializeField] private GameObject _satRemainingImage;
+
 
     void Start()
     {
         _shipControls = _shipControls.GetComponent<ShipControls>();
         _spaceShip.SetActive(true);
+        //_satRemainingImage.SetActive(false);
 
         if (_pressRText != null)
         {
@@ -97,11 +100,21 @@ public class ChangeCamera : MonoBehaviour
                 CockPitCam();
             }
         }
+
+        if (_isPlayingCutScene == true)
+        {
+            _satRemainingImage.SetActive(false);
+        }
+        else
+        {
+            _satRemainingImage.SetActive(true);
+        }
     }
 
     IEnumerator PlayCutScene()
     {
         yield return new WaitForSeconds(20);
+        _isPlayingCutScene = true;
         _isCockpitCam = false;
         _pressRText.SetActive(false);
         _cockpit.SetActive(false);
