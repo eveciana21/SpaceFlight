@@ -18,8 +18,6 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private AudioClip _laserAudio;
     private AudioSource _audioSource;
 
-
-
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();

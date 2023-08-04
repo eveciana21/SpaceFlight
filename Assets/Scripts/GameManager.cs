@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _satellitesRemaining = 5;
     [SerializeField] private GameObject _lastSatellite;
     private UIManager _uiManager;
+    private ChangeCamera _changeCameraScript;
 
     private bool _canQuit;
     [SerializeField] private GameObject _canQuitUI;
@@ -18,7 +19,9 @@ public class GameManager : MonoBehaviour
         _canQuitUI.SetActive(false);
         _lastSatellite.SetActive(false);
 
+        _changeCameraScript = GameObject.Find("Cameras").GetComponent<ChangeCamera>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
     }
 
     void Update()
@@ -36,6 +39,8 @@ public class GameManager : MonoBehaviour
         }
         else if (_satellitesRemaining < 1)
         {
+            _changeCameraScript.IsPlayingCutScene();
+            _changeCameraScript.SatelliteImageDisabled();
         }
     }
 
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            _changeCameraScript.IsPlayingCutScene();
             _canQuitUI.SetActive(true);
             _canQuit = true;
             Time.timeScale = 0;
@@ -52,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void Continue()
     {
         _canQuitUI.SetActive(false);
-
+        _changeCameraScript.IsNotPlayingCutScene();
         _canQuit = false;
         Time.timeScale = 1;
     }
@@ -76,10 +82,4 @@ public class GameManager : MonoBehaviour
         _uiManager.SatellitesRemaining(_satellitesRemaining);
     }
 
-    IEnumerator DisableSatRemainingWindow()
-    {
-        _satRemainingImage.SetActive(false);
-        yield return new WaitForSeconds(10);
-        _satRemainingWindow.SetActive(false);
-    }
 }
