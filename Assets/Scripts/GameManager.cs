@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     private bool _canQuit;
     [SerializeField] private GameObject _canQuitUI;
     [SerializeField] private GameObject _satRemainingImage;
-    [SerializeField] private GameObject _satRemainingWindow;
 
+    [SerializeField] private Collider _portalCollider;
+    [SerializeField] private GameObject _cutsceneText;
+    [SerializeField] private GameObject _missionStatement;
     void Start()
     {
         _canQuitUI.SetActive(false);
@@ -21,7 +23,6 @@ public class GameManager : MonoBehaviour
 
         _changeCameraScript = GameObject.Find("Cameras").GetComponent<ChangeCamera>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-
     }
 
     void Update()
@@ -48,6 +49,9 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            _satRemainingImage.SetActive(false);
+            _missionStatement.SetActive(false);
+            _cutsceneText.SetActive(false);
             _changeCameraScript.IsPlayingCutScene();
             _canQuitUI.SetActive(true);
             _canQuit = true;
@@ -55,8 +59,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
     public void Continue()
     {
+        _satRemainingImage.SetActive(true);
         _canQuitUI.SetActive(false);
         _changeCameraScript.IsNotPlayingCutScene();
         _canQuit = false;
@@ -80,6 +87,15 @@ public class GameManager : MonoBehaviour
     public void SatelliteCount()
     {
         _uiManager.SatellitesRemaining(_satellitesRemaining);
+    }
+
+    public void EnablePortalCollider()
+    {
+        _portalCollider.enabled = true;
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

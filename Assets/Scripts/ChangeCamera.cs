@@ -18,7 +18,7 @@ public class ChangeCamera : MonoBehaviour
     [SerializeField] private GameObject _trailParticles;
     [SerializeField] private bool _isPlayingCutScene;
 
-    [SerializeField] private GameObject _pressRText;
+    [SerializeField] private GameObject _cutSceneText;
 
     [SerializeField] private CinemachineExtension _zoomCam;
 
@@ -27,24 +27,23 @@ public class ChangeCamera : MonoBehaviour
     [SerializeField] private GameObject _satRemainingImage;
 
     [SerializeField] private GameObject _missionStatement;
-    private bool _canStartPlaying;
+    [SerializeField] private bool _canStartPlaying;
 
-    private bool _satelliteImageDisabled;
+    [SerializeField] private bool _satelliteImageDisabled;
 
-
+    [SerializeField] private bool _canPlayCutScene = true;
     void Start()
     {
         StartCoroutine(MissionStatement());
-        StartCoroutine(CanStartPlaying());
 
         _shipControls = _shipControls.GetComponent<ShipControls>();
         _spaceShip.SetActive(true);
         _satRemainingImage.SetActive(false);
         _zoomCam.enabled = false;
 
-        if (_pressRText != null)
+        if (_cutSceneText != null)
         {
-            _pressRText.SetActive(false);
+            _cutSceneText.SetActive(false);
         }
         if (_cockpit != null)
         {
@@ -64,17 +63,21 @@ public class ChangeCamera : MonoBehaviour
 
         if (_isCockpitCam == false)
         {
-            if (Input.GetKey(KeyCode.T))
+            if (Input.GetKey(KeyCode.F))
             {
                 _zoomCam.enabled = true;
             }
-            if (Input.GetKeyUp(KeyCode.T))
+            if (Input.GetKeyUp(KeyCode.F))
             {
                 _zoomCam.enabled = false;
             }
         }
 
-        if (_isPlayingCutScene == true)
+        if (_isCockpitCam == false && _canStartPlaying == true && _isPlayingCutScene == false)
+        {
+            _satRemainingImage.SetActive(true);
+        }
+        if (_satelliteImageDisabled == true)
         {
             _satRemainingImage.SetActive(false);
         }
@@ -85,7 +88,8 @@ public class ChangeCamera : MonoBehaviour
         yield return new WaitForSeconds(10);
         _isPlayingCutScene = true;
         _isCockpitCam = false;
-        _pressRText.SetActive(false);
+        _satRemainingImage.SetActive(false);
+        _cutSceneText.SetActive(false);
         _cockpit.SetActive(false);
         _spaceShip.SetActive(true);
         _director.Play();
@@ -93,58 +97,65 @@ public class ChangeCamera : MonoBehaviour
 
     private void SpaceShipCam()
     {
-        if (_satelliteImageDisabled == false)
-        {
-            _satRemainingImage.SetActive(true);
-        }
         _spaceShipCam.SetActive(true);
         _cockpitCam.SetActive(false);
         _cockpit.SetActive(false);
-        _pressRText.SetActive(true);
+        _cutSceneText.SetActive(true);
         _director.Stop();
         _trailParticles.SetActive(false);
-        StopCoroutine("PlayCutScene");
-        StartCoroutine("PlayCutScene");
+        if (_canPlayCutScene == true)
+        {
+            StopCoroutine("PlayCutScene");
+            StartCoroutine("PlayCutScene");
+        }
+        else
+        {
+            StopCoroutine("PlayCutScene");
+        }
     }
 
     private void CockPitCam()
     {
-        _pressRText.SetActive(false);
+        _cutSceneText.SetActive(false);
         _satRemainingImage.SetActive(false);
         _director.Stop();
-        StopCoroutine("PlayCutScene");
-        StartCoroutine("PlayCutScene");
+        if (_canPlayCutScene == true)
+        {
+            StopCoroutine("PlayCutScene");
+            StartCoroutine("PlayCutScene");
+        }
+        else
+        {
+            StopCoroutine("PlayCutScene");
+        }
     }
-
 
     IEnumerator MissionStatement()
     {
         _missionStatement.SetActive(false);
         yield return new WaitForSeconds(7);
+        //StartCoroutine(AlertFlicker());
         _missionStatement.SetActive(true);
         yield return new WaitForSeconds(7);
         _missionStatement.SetActive(false);
+        _canStartPlaying = true; // can now press inputs
         yield return new WaitForSeconds(3);
         _satRemainingImage.SetActive(true);
-        _pressRText.SetActive(true);
-    }
-
-    IEnumerator CanStartPlaying()
-    {
-        yield return new WaitForSeconds(14);
-        _canStartPlaying = true; //can press inputs
+        _cutSceneText.SetActive(true);
     }
 
     private void ChangeCameraView()
     {
         if (_canStartPlaying == true)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.V))
             {
+                _isPlayingCutScene = false;
+
                 if (_isCockpitCam == false)
                 {
                     _spaceShip.SetActive(false);
-                    _pressRText.SetActive(true);
+                    _cutSceneText.SetActive(true);
                     _cockpitCam.SetActive(true);
                     _cockpit.SetActive(true);
                     _spaceShipCam.SetActive(false);
@@ -153,7 +164,7 @@ public class ChangeCamera : MonoBehaviour
                 else
                 {
                     _spaceShip.SetActive(true);
-                    _pressRText.SetActive(false);
+                    _cutSceneText.SetActive(false);
                     _cockpitCam.SetActive(false);
                     _cockpit.SetActive(false);
                     _spaceShipCam.SetActive(true);
@@ -163,13 +174,17 @@ public class ChangeCamera : MonoBehaviour
 
             if (Input.anyKeyDown || Input.anyKey)
             {
+                _isPlayingCutScene = false;
+
                 if (_isCockpitCam == false)
                 {
+                    _satRemainingImage.SetActive(true);
                     _shipControls.CockpitCamNotActive();
                     SpaceShipCam();
                 }
                 else
                 {
+                    _satRemainingImage.SetActive(false);
                     _shipControls.CockpitCamActive();
                     CockPitCam();
                 }
@@ -189,5 +204,11 @@ public class ChangeCamera : MonoBehaviour
     public void SatelliteImageDisabled()
     {
         _satelliteImageDisabled = true;
+    }
+
+    public void CutSceneDisabled()
+    {
+        _cutSceneText.SetActive(false);
+        _canPlayCutScene = false;
     }
 }

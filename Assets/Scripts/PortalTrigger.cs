@@ -6,15 +6,14 @@ using UnityEngine.Playables;
 public class PortalTrigger : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _director;
-    [SerializeField] private GameObject _pressRText;
-
+    [SerializeField] private GameObject _cutSceneText;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "SpaceShip")
         {
             _director.Play();
-            _pressRText.SetActive(false);
+            _cutSceneText.SetActive(false);
         }
     }
 }

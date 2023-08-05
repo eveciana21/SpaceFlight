@@ -5,10 +5,12 @@ using UnityEngine;
 public class Satellite : MonoBehaviour
 {
     [SerializeField] private int _health = 16;
-    [SerializeField] private GameObject _explosion;
+    [SerializeField] private GameObject _explosion, _smallExplosion;
     [SerializeField] private MeshRenderer _renderer;
     private bool _destroySeq;
     private GameManager _gameManager;
+
+
 
     void Start()
     {
@@ -41,8 +43,9 @@ public class Satellite : MonoBehaviour
     {
         if (other.tag == "Laser")
         {
-            Debug.Log("Hit Target");
             _health--;
+            GameObject explosion = Instantiate(_smallExplosion, transform.position, Quaternion.identity);
+            Destroy(explosion, 5f);
             Destroy(other.gameObject);
         }
     }

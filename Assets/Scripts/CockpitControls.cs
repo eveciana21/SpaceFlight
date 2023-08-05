@@ -12,8 +12,18 @@ public class CockpitControls : MonoBehaviour
     [SerializeField] private float _maxRotate;
     [SerializeField] private GameObject _laserPrefab;
 
+    [SerializeField] private AudioClip _laserAudio;
+    private AudioSource _audioSource;
+
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
+        if (_audioSource != null)
+        {
+            _audioSource.clip = _laserAudio;
+        }
+
         _currentSpeed = 1;
     }
 
@@ -24,6 +34,7 @@ public class CockpitControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(_laserPrefab, transform.position, transform.rotation);
+            _audioSource.Play();
         }
     }
 

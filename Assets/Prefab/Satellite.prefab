@@ -146,6 +146,8 @@ MonoBehaviour:
   _health: 10
   _explosion: {fileID: 7571110843994879356, guid: 246f21c2d03c89a4d9690990cfc35eb9,
     type: 3}
+  _smallExplosion: {fileID: 4157878853127150776, guid: 339f6ed8cc10d584daec506ae5809da6,
+    type: 3}
   _renderer: {fileID: 3500677636187229538}
 --- !u!95 &8296172668317843599
 Animator:

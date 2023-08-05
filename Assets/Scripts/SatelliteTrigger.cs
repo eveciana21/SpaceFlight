@@ -7,7 +7,6 @@ public class SatelliteTrigger : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _satelliteDirector;
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Laser")

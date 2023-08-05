@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 
+
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _director;
-    void Start()
-    {
+    [SerializeField] private GameObject _controlsScreen;
 
-    }
 
 
     public void PressQuit()
@@ -31,5 +30,15 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void Controls()
+    {
+        _controlsScreen.SetActive(true);
+    }
+
+    public void ExitControlsScreen()
+    {
+        _controlsScreen.SetActive(false);
     }
 }

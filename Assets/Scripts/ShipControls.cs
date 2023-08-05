@@ -18,8 +18,11 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private AudioClip _laserAudio;
     private AudioSource _audioSource;
 
+    private bool _canMove;
+
     void Start()
     {
+        StartCoroutine(CanPressInputDelay());
         _audioSource = GetComponent<AudioSource>();
 
         if (_audioSource != null)
@@ -33,12 +36,16 @@ public class ShipControls : MonoBehaviour
 
     void Update()
     {
-        ShipMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_canMove == true)
         {
-            Instantiate(_laserPrefab, transform.position, transform.rotation);
-            _audioSource.Play();
+            ShipMovement();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(_laserPrefab, transform.position, transform.rotation);
+                _audioSource.Play();
+            }
         }
     }
 
@@ -49,7 +56,7 @@ public class ShipControls : MonoBehaviour
 
         if (_cockpitCam == false)
         {
-            if (Input.GetKey(KeyCode.T))
+            if (Input.GetKey(KeyCode.F))
             {
                 _currentSpeed++;
                 if (_currentSpeed > 40)
@@ -60,7 +67,7 @@ public class ShipControls : MonoBehaviour
             }//increase speed
         }
 
-        if (Input.GetKeyUp(KeyCode.T))
+        if (Input.GetKeyUp(KeyCode.F))
         {
             _currentSpeed = 1;
             _particle.SetActive(false);
@@ -76,7 +83,11 @@ public class ShipControls : MonoBehaviour
 
         transform.position += transform.forward * _currentSpeed * Time.deltaTime;
     }
-
+    IEnumerator CanPressInputDelay()
+    {
+        yield return new WaitForSeconds(14);
+        _canMove = true;
+    }
     public void CockpitCamActive()
     {
         _cockpitCam = true;
