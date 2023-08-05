@@ -32,11 +32,17 @@ public class GameManager : MonoBehaviour
         SatelliteRemainingToEndGame();
     }
 
+    public void SatelliteCutscene()
+    {
+        _satellitesRemaining = 0;
+    }
+
     private void SatelliteRemainingToEndGame()
     {
         if (_satellitesRemaining == 1)
         {
             _lastSatellite.SetActive(true);
+
         }
         else if (_satellitesRemaining < 1)
         {
@@ -83,6 +89,10 @@ public class GameManager : MonoBehaviour
     {
         _satellitesRemaining--;
     }
+
+
+
+
 
     public void SatelliteCount()
     {

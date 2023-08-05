@@ -49,4 +49,6 @@ public class Satellite : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    
 }

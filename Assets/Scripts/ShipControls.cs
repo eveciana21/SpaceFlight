@@ -59,10 +59,10 @@ public class ShipControls : MonoBehaviour
             if (Input.GetKey(KeyCode.F))
             {
                 _currentSpeed++;
+                _particle.SetActive(true);
                 if (_currentSpeed > 40)
                 {
                     _currentSpeed = 40;
-                    _particle.SetActive(true);
                 }
             }//increase speed
         }
@@ -70,7 +70,7 @@ public class ShipControls : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F))
         {
             _currentSpeed = 1;
-            _particle.SetActive(false);
+            StartCoroutine(DelayParticleDisable());
         }
 
         Vector3 rotateH = new Vector3(0, _horizontal, 0);
@@ -96,4 +96,11 @@ public class ShipControls : MonoBehaviour
     {
         _cockpitCam = false;
     }
+
+    IEnumerator DelayParticleDisable()
+    {
+        yield return new WaitForSeconds(0.18f);
+        _particle.SetActive(false);
+    }
+
 }

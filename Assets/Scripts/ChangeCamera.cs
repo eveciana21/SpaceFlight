@@ -9,7 +9,7 @@ public class ChangeCamera : MonoBehaviour
 {
     [SerializeField] private GameObject _spaceShip;
     [SerializeField] private GameObject _cockpit;
-    [SerializeField] private PlayableDirector _director;
+    [SerializeField] private PlayableDirector _director, _controlsDirector;
     [SerializeField] private GameObject _mainCam;
 
     [SerializeField] private GameObject _cockpitCam, _spaceShipCam;
@@ -32,6 +32,10 @@ public class ChangeCamera : MonoBehaviour
     [SerializeField] private bool _satelliteImageDisabled;
 
     [SerializeField] private bool _canPlayCutScene = true;
+
+
+
+
     void Start()
     {
         StartCoroutine(MissionStatement());
@@ -83,9 +87,11 @@ public class ChangeCamera : MonoBehaviour
         }
     }
 
+
+
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(20);
         _isPlayingCutScene = true;
         _isCockpitCam = false;
         _satRemainingImage.SetActive(false);
@@ -134,14 +140,13 @@ public class ChangeCamera : MonoBehaviour
     {
         _missionStatement.SetActive(false);
         yield return new WaitForSeconds(7);
-        //StartCoroutine(AlertFlicker());
         _missionStatement.SetActive(true);
         yield return new WaitForSeconds(7);
         _missionStatement.SetActive(false);
         _canStartPlaying = true; // can now press inputs
         yield return new WaitForSeconds(3);
         _satRemainingImage.SetActive(true);
-        _cutSceneText.SetActive(true);
+        _controlsDirector.Play();
     }
 
     private void ChangeCameraView()
@@ -209,6 +214,7 @@ public class ChangeCamera : MonoBehaviour
     public void CutSceneDisabled()
     {
         _cutSceneText.SetActive(false);
+        _satRemainingImage.SetActive(false);
         _canPlayCutScene = false;
     }
 }
