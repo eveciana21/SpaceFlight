@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     public void PressPlay()
     {
         SceneManager.LoadScene(1);
+        Cursor.visible = false;
     }
 
     public void PlayGame()

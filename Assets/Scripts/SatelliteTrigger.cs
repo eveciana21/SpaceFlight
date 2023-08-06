@@ -26,6 +26,5 @@ public class SatelliteTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         _satelliteImage.SetActive(false);
-        Debug.Log("ImageFalse");
     }
 }

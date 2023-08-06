@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int _satellitesRemaining = 5;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Collider _portalCollider;
     [SerializeField] private GameObject _cutsceneText;
     [SerializeField] private GameObject _missionStatement;
+
     void Start()
     {
         _canQuitUI.SetActive(false);
@@ -27,7 +30,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Quit();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Quit();
+        }
         SatelliteCount();
         SatelliteRemainingToEndGame();
     }
@@ -53,22 +59,22 @@ public class GameManager : MonoBehaviour
 
     private void Quit()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _satRemainingImage.SetActive(false);
-            _missionStatement.SetActive(false);
-            _cutsceneText.SetActive(false);
-            _changeCameraScript.IsPlayingCutScene();
-            _canQuitUI.SetActive(true);
-            _canQuit = true;
-            Time.timeScale = 0;
-        }
+        Cursor.visible = true;
+
+        _satRemainingImage.SetActive(false);
+        _missionStatement.SetActive(false);
+        _cutsceneText.SetActive(false);
+        _changeCameraScript.IsPlayingCutScene();
+        _canQuitUI.SetActive(true);
+        _canQuit = true;
+        Time.timeScale = 0;
     }
 
 
 
     public void Continue()
     {
+        Cursor.visible = false;
         _satRemainingImage.SetActive(true);
         _canQuitUI.SetActive(false);
         _changeCameraScript.IsNotPlayingCutScene();
@@ -80,6 +86,7 @@ public class GameManager : MonoBehaviour
         if (_canQuit == true)
         {
             _canQuitUI.SetActive(false);
+            Cursor.visible = true;
             SceneManager.LoadScene(0);
             Time.timeScale = 1;
         }
@@ -89,10 +96,6 @@ public class GameManager : MonoBehaviour
     {
         _satellitesRemaining--;
     }
-
-
-
-
 
     public void SatelliteCount()
     {
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
     }
     public void MainMenu()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene(0);
     }
 
