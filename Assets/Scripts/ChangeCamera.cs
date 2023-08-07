@@ -38,6 +38,7 @@ public class ChangeCamera : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         StartCoroutine(MissionStatement());
 
         _shipControls = _shipControls.GetComponent<ShipControls>();
