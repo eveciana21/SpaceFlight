@@ -7,10 +7,11 @@ using UnityEngine.Playables;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector _director;
+    [SerializeField] private PlayableDirector _director, _thumbsUpDirector;
     [SerializeField] private GameObject _controlsScreen;
 
     [SerializeField] private GameObject _playButton, _quitButton, _controlsButton;
+
 
 
     public void PressQuit()
@@ -25,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void PressPlay()
     {
-        SceneManager.LoadScene(1);
+        _thumbsUpDirector.Play();
         Cursor.visible = false;
     }
 
@@ -40,7 +41,6 @@ public class MainMenu : MonoBehaviour
         _quitButton.SetActive(false);
         _controlsButton.SetActive(false);
         _controlsScreen.SetActive(true);
-
     }
 
     public void ExitControlsScreen()

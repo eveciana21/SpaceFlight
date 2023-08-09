@@ -92,7 +92,7 @@ public class ChangeCamera : MonoBehaviour
 
     IEnumerator PlayCutScene()
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(5);
         _isPlayingCutScene = true;
         _isCockpitCam = false;
         _satRemainingImage.SetActive(false);
@@ -184,13 +184,13 @@ public class ChangeCamera : MonoBehaviour
 
                 if (_isCockpitCam == false)
                 {
-                    _satRemainingImage.SetActive(true);
+                    //_satRemainingImage.SetActive(true);     //UNSURE IF I NEED THIS YET
                     _shipControls.CockpitCamNotActive();
                     SpaceShipCam();
                 }
                 else
                 {
-                    _satRemainingImage.SetActive(false);
+                    //_satRemainingImage.SetActive(false);    //UNSURE IF I NEED THIS YET
                     _shipControls.CockpitCamActive();
                     CockPitCam();
                 }
