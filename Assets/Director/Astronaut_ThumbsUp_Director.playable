@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Time: 3.6333333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 6264d9df87705f44781c32dcba773605, type: 2}
+  m_Asset: {fileID: 0}
 --- !u!114 &6515983742531225116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 7558333888117626928}
-    m_Duration: 3.7
+    m_Duration: 5.383333333333334
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6515983742531225116}
     m_EaseInDuration: 1.4294776916503906
