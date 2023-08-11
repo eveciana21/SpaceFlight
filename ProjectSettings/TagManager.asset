@@ -43,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 1856868721
+    locked: 0
   - name: Cockpit
     uniqueID: 3153606487
     locked: 0
