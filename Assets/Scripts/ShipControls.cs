@@ -17,12 +17,15 @@ public class ShipControls : MonoBehaviour
 
     [SerializeField] private AudioClip _laserAudio;
     private AudioSource _audioSource;
-    [SerializeField] private GameObject _boostAudio;
 
     private bool _canMove;
 
+    private AudioManager _audioManager;
+
     void Start()
     {
+        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
+
         StartCoroutine(CanPressInputDelay());
         _audioSource = GetComponent<AudioSource>();
 
@@ -60,7 +63,6 @@ public class ShipControls : MonoBehaviour
             if (Input.GetKey(KeyCode.F))
             {
                 _currentSpeed++;
-                _boostAudio.SetActive(true);
                 _particle.SetActive(true);
                 if (_currentSpeed > 40)
                 {
@@ -72,15 +74,10 @@ public class ShipControls : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F))
         {
             _currentSpeed = 1;
-            StartCoroutine(BoostAudioDelay());
             StartCoroutine(DelayParticleDisable());
         }
 
-        IEnumerator BoostAudioDelay()
-        {
-            yield return new WaitForSeconds(0.75f);
-            _boostAudio.SetActive(false);
-        }
+
 
         Vector3 rotateH = new Vector3(0, _horizontal, 0);
         transform.Rotate(rotateH * _rotSpeed * Time.deltaTime);

@@ -33,11 +33,14 @@ public class ChangeCamera : MonoBehaviour
 
     [SerializeField] private bool _canPlayCutScene = true;
 
+    [SerializeField] private GameObject _mouseToLookText;
 
-
+    private AudioManager _audioManager;
 
     void Start()
     {
+        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
+
         Cursor.visible = false;
         StartCoroutine(MissionStatement());
 
@@ -104,12 +107,17 @@ public class ChangeCamera : MonoBehaviour
 
     private void SpaceShipCam()
     {
+        _audioManager.ShipGrumbleOn();
+        _audioManager.CockpitGrumbleOff();
+
         _spaceShipCam.SetActive(true);
         _cockpitCam.SetActive(false);
         _cockpit.SetActive(false);
+        _mouseToLookText.SetActive(false);
         _cutSceneText.SetActive(true);
         _director.Stop();
         _trailParticles.SetActive(false);
+
         if (_canPlayCutScene == true)
         {
             StopCoroutine("PlayCutScene");
@@ -123,8 +131,12 @@ public class ChangeCamera : MonoBehaviour
 
     private void CockPitCam()
     {
-        _cutSceneText.SetActive(false);
+        _audioManager.CockpitGrumbleOn();
+        _audioManager.ShipGrumbleOff();
+
+        _cutSceneText.SetActive(true);
         _satRemainingImage.SetActive(false);
+        _mouseToLookText.SetActive(true);
         _director.Stop();
         if (_canPlayCutScene == true)
         {
