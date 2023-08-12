@@ -35,11 +35,11 @@ public class ChangeCamera : MonoBehaviour
 
     [SerializeField] private GameObject _mouseToLookText;
 
-    private AudioManager _audioManager;
+    //private AudioManager _audioManager;
 
     void Start()
     {
-        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
+       // _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
 
         Cursor.visible = false;
         StartCoroutine(MissionStatement());
@@ -107,8 +107,8 @@ public class ChangeCamera : MonoBehaviour
 
     private void SpaceShipCam()
     {
-        _audioManager.ShipGrumbleOn();
-        _audioManager.CockpitGrumbleOff();
+       // _audioManager.ShipGrumbleOn();
+       // _audioManager.CockpitGrumbleOff();
 
         _spaceShipCam.SetActive(true);
         _cockpitCam.SetActive(false);
@@ -131,8 +131,8 @@ public class ChangeCamera : MonoBehaviour
 
     private void CockPitCam()
     {
-        _audioManager.CockpitGrumbleOn();
-        _audioManager.ShipGrumbleOff();
+       // _audioManager.CockpitGrumbleOn();
+       // _audioManager.ShipGrumbleOff();
 
         _cutSceneText.SetActive(true);
         _satRemainingImage.SetActive(false);

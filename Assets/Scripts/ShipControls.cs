@@ -20,12 +20,9 @@ public class ShipControls : MonoBehaviour
 
     private bool _canMove;
 
-    private AudioManager _audioManager;
 
     void Start()
     {
-        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
-
         StartCoroutine(CanPressInputDelay());
         _audioSource = GetComponent<AudioSource>();
 
