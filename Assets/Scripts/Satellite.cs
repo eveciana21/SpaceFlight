@@ -10,8 +10,6 @@ public class Satellite : MonoBehaviour
     private bool _destroySeq;
     private GameManager _gameManager;
 
-
-
     void Start()
     {
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
@@ -48,7 +46,5 @@ public class Satellite : MonoBehaviour
             Destroy(explosion, 5f);
             Destroy(other.gameObject);
         }
-    }
-
-    
+    }  
 }

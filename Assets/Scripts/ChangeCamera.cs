@@ -35,13 +35,8 @@ public class ChangeCamera : MonoBehaviour
 
     [SerializeField] private GameObject _mouseToLookText;
 
-    //private AudioManager _audioManager;
-
     void Start()
     {
-       // _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
-
-        Cursor.visible = false;
         StartCoroutine(MissionStatement());
 
         _shipControls = _shipControls.GetComponent<ShipControls>();

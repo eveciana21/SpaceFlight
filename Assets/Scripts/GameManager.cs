@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Collider _portalCollider;
     [SerializeField] private GameObject _cutsceneText;
     [SerializeField] private GameObject _missionStatement;
-
     void Start()
     {
         _canQuitUI.SetActive(false);
@@ -59,8 +58,6 @@ public class GameManager : MonoBehaviour
 
     private void Quit()
     {
-        Cursor.visible = true;
-
         _satRemainingImage.SetActive(false);
         _missionStatement.SetActive(false);
         _cutsceneText.SetActive(false);
@@ -74,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     public void Continue()
     {
-        Cursor.visible = false;
         _satRemainingImage.SetActive(true);
         _canQuitUI.SetActive(false);
         _changeCameraScript.IsNotPlayingCutScene();
@@ -86,11 +82,11 @@ public class GameManager : MonoBehaviour
         if (_canQuit == true)
         {
             _canQuitUI.SetActive(false);
-            Cursor.visible = true;
             SceneManager.LoadScene(0);
             Time.timeScale = 1;
         }
     }
+
 
     public void SatellitesRemaining()
     {
@@ -108,7 +104,6 @@ public class GameManager : MonoBehaviour
     }
     public void MainMenu()
     {
-        Cursor.visible = true;
         SceneManager.LoadScene(0);
     }
 

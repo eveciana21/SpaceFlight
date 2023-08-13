@@ -11,8 +11,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _controlsScreen;
 
     [SerializeField] private GameObject _playButton, _quitButton, _controlsButton;
+    [SerializeField] private PlayableDirector _typingDirector;
 
 
+    public void TypingLoopDirector()
+    {
+        _typingDirector.Play();
+    }
 
     public void PressQuit()
     {
@@ -27,7 +32,6 @@ public class MainMenu : MonoBehaviour
     public void PressPlay()
     {
         _thumbsUpDirector.Play();
-        Cursor.visible = false;
     }
 
     public void PlayGame()
