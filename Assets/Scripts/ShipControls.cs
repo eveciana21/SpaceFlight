@@ -20,7 +20,6 @@ public class ShipControls : MonoBehaviour
 
     private bool _canMove;
 
-
     void Start()
     {
         StartCoroutine(CanPressInputDelay());
@@ -37,7 +36,6 @@ public class ShipControls : MonoBehaviour
 
     void Update()
     {
-
         if (_canMove == true)
         {
             ShipMovement();
@@ -57,7 +55,7 @@ public class ShipControls : MonoBehaviour
 
         if (_cockpitCam == false)
         {
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKey(KeyCode.F)) //increase speed
             {
                 _currentSpeed++;
                 _particle.SetActive(true);
@@ -65,7 +63,7 @@ public class ShipControls : MonoBehaviour
                 {
                     _currentSpeed = 40;
                 }
-            }//increase speed
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.F))
@@ -73,8 +71,6 @@ public class ShipControls : MonoBehaviour
             _currentSpeed = 1;
             StartCoroutine(DelayParticleDisable());
         }
-
-
 
         Vector3 rotateH = new Vector3(0, _horizontal, 0);
         transform.Rotate(rotateH * _rotSpeed * Time.deltaTime);
@@ -105,5 +101,4 @@ public class ShipControls : MonoBehaviour
         yield return new WaitForSeconds(0.18f);
         _particle.SetActive(false);
     }
-
 }

@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         {
             Quit();
         }
+
         SatelliteCount();
         SatelliteRemainingToEndGame();
     }
@@ -67,8 +68,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-
-
     public void Continue()
     {
         _satRemainingImage.SetActive(true);
@@ -86,7 +85,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-
 
     public void SatellitesRemaining()
     {
@@ -106,5 +104,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
 }

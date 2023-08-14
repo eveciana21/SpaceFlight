@@ -7,12 +7,6 @@ public class SatelliteTrigger : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _satelliteDirector;
     [SerializeField] private GameObject _satelliteImage;
-    private GameManager _gameManager;
-
-    private void Start()
-    {
-        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {

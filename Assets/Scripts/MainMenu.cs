@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 
-
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _director, _thumbsUpDirector;
@@ -29,10 +28,10 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void PressPlay()
+    /*public void PressPlay()
     {
         _thumbsUpDirector.Play();
-    }
+    }*/
 
     public void PlayGame()
     {
@@ -48,6 +47,4 @@ public class MainMenu : MonoBehaviour
     {
         _controlsScreen.SetActive(false);
     }
-
-
 }

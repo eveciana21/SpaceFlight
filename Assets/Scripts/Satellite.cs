@@ -19,7 +19,6 @@ public class Satellite : MonoBehaviour
     {
         transform.Rotate(new Vector3(0.1f, 0.1f, 0.1f));
 
-
         if (_health < 1 && _destroySeq == false)
         {
             StartCoroutine(DestroySatellite());
