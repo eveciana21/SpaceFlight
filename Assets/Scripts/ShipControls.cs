@@ -84,7 +84,7 @@ public class ShipControls : MonoBehaviour
     }
     IEnumerator CanPressInputDelay()
     {
-        yield return new WaitForSeconds(14);
+        yield return new WaitForSeconds(16);
         _canMove = true;
     }
     public void CockpitCamActive()

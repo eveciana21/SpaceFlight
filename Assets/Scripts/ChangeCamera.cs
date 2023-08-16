@@ -147,7 +147,7 @@ public class ChangeCamera : MonoBehaviour
         _missionStatement.SetActive(false);
         yield return new WaitForSeconds(7);
         _missionStatement.SetActive(true);
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(9);
         _missionStatement.SetActive(false);
         _canStartPlaying = true; // can now press inputs
         yield return new WaitForSeconds(3);

@@ -28,11 +28,6 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    /*public void PressPlay()
-    {
-        _thumbsUpDirector.Play();
-    }*/
-
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
